@@ -188,6 +188,9 @@ public class MainActivity extends AppCompatActivity{
             if(args[0].length() == 0 || args[1].length() == 0 || args[2].length() == 0)
                 return new Pair<Boolean, String>(false, "Empty values!");
 
+            if(!checkPrime(args[1]))
+                return new Pair<Boolean, String>(false, "P must be prime!");
+
             mKeys.clear();
 
             int numberClients = Integer.parseInt(args[2]);
@@ -225,6 +228,11 @@ public class MainActivity extends AppCompatActivity{
 
             mRecyclerViewKeysAdapter.notifyDataSetChanged();
         }
+    }
+
+    private boolean checkPrime(String s)
+    {
+        return new BigInteger(s).isProbablePrime(1);
     }
 }
 
